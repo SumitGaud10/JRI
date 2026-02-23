@@ -1,0 +1,31 @@
+<%- include("../partials/navbar") %>
+<section class="container mt-4">
+  <legend class="mb-0">Booking for <%= data.name %></legend>
+  <p class="text-secondary">Select entity</p>
+
+  <form action="/booking/book" method="post" class="mt-3">
+    <input type="hidden" name="name" value="<%= data.name %>" />
+    <input type="hidden" name="date" value="<%= data.date %>" />
+    <input type="hidden" name="occupation" value="<%= data.occupation %>" />
+
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Name of entities</th>
+      <th scope="col">Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% availableEntities.forEach(element => {%> 
+      <tr>
+        <th scope="row"><input type="checkbox" name="entities" value="<%= element._id %>" id="" class="form-check-input"/></th>
+        <td><%= element.name %></td>
+        <td><%= element.price[data.occupation] %></td>
+      </tr>
+    <%}); %>
+  </tbody>
+</table>
+<input type="submit" value="Submit" class="btn btn-primary">
+  </form>
+</section>

@@ -1,0 +1,30 @@
+<%- include("../partials/navbar") %> <%- include("../partials/alert") %>
+<section class="container mt-4">
+  <legend class="mb-0">All Bookings</legend>
+  <p class="text-secondary">
+    Click the three dots for the list of all entities in a booking
+  </p>
+
+  <table class="mt-3 table" id="example">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Occupation</th>
+            <th>Entities</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% response.forEach(element => { %>
+            <tr>
+                <td><%= element.name %></td>
+                <td><%= element.date %></td>
+                <td><%= element.occupation %></td>
+                <td><%= element.entities.length %></td>
+                <td></td>
+            </tr>
+        <% }); %>
+    </tbody>
+  </table>
+</section>

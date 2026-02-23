@@ -1,0 +1,33 @@
+<div class="container">
+  <div
+    class="card position-absolute top-50 start-50 translate-middle"
+    style="width: 21rem"
+  >
+    <div class="card-body">
+      <h5 class="card-title">Juniour Railway Institute</h5>
+      <h6 class="card-subtitle mb-2 text-body-secondary">Login</h6>
+      <%- include("partials/alert") %>
+      <form method="post" action="/login">
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            name="username"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            name="password"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
