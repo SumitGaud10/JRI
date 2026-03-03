@@ -7,18 +7,21 @@ const entitySchema = new mongoose.Schema({
     unique: true,
   },
   price: {
-    Railway: {
-      type: Number,
-      required: true,
+    type: {
+      Railway: {
+        type: Number,
+        required: true,
+      },
+      Committee: {
+        type: Number,
+        required: true,
+      },
+      Others: {
+        type: Number,
+        required: true,
+      },
     },
-    Committee: {
-      type: Number,
-      required: true,
-    },
-    Others: {
-      type: Number,
-      required: true,
-    },
+    required: true,
   },
 });
 

@@ -15,14 +15,81 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/booking/new"
+          <a
+            class="nav-link <%= location == '/booking/new' ? 'active':'' %>"
+            aria-current="page"
+            href="/booking/new"
             >Add</a
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/booking/view">View</a>
+          <a
+            class="nav-link <%= location == '/booking/view' ? 'active':'' %>"
+            href="/booking/view"
+            >View</a
+          >
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Action
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <button class="dropdown-item" id="theme-toggle">
+                Change theme
+              </button>
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <!-- Button trigger modal -->
+              <button
+                type="button"
+                class="dropdown-item"
+                data-bs-toggle="modal"
+                data-bs-target="#logoutConfirmation"
+              >
+                Logout
+              </button>
+            </li>
+          </ul>
         </li>
       </ul>
     </div>
   </div>
 </nav>
+<div
+  class="modal fade"
+  id="logoutConfirmation"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div> -->
+      <div class="modal-body">Are you sure you want to logout?</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <form action="/logout" method="post">
+          <button type="submit" class="btn btn-warning">Proceed</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

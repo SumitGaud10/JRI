@@ -1,7 +1,10 @@
+import mongoose from "mongoose";
 import {
   createBooking,
+  deleteBookingService,
   getAllBookings,
   getAvailableEntity,
+  getBooking,
 } from "../services/booking.service.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { createFormBody, selectBody } from "../zod/booking.zod.js";
@@ -40,4 +43,35 @@ export const book = asyncHandler(async (req, res) => {
 export const view = asyncHandler(async (req, res) => {
   const response = await getAllBookings();
   return res.render("dashboard/view", { response });
+});
+
+export const detailedView = asyncHandler(async (req, res) => {
+  const query = req.params.id as string;
+  if (!mongoose.Types.ObjectId.isValid(query)) {
+    req.flash("error", "Parameter not valid");
+    return res.redirect("/booking/view");
+  }
+  const booking = await getBooking(query);
+  if (!booking) {
+    req.flash("error", "Booking not found");
+    return res.redirect("/booking/view");
+  }
+  res.render("dashboard/details", { booking });
+});
+
+export const deleteBooking = asyncHandler(async (req, res) => {
+  const query = req.params.id as string;
+  if (!mongoose.Types.ObjectId.isValid(query)) {
+    req.flash("error", "Parameter not valid");
+    return res.redirect(`/booking/view/${req.query}`);
+  }
+
+  const success = await deleteBookingService(query);
+  if (!success) {
+    req.flash("error", "Could not delete booking");
+    return res.redirect(`/booking/view/${req.query}`);
+  }
+
+  req.flash("success", "Booking deleted successfully");
+  return res.redirect("/booking/view");
 });

@@ -12,17 +12,17 @@
             <th>Date</th>
             <th>Occupation</th>
             <th>Entities</th>
-            <th>Actions</th>
+            <th>Total</th>
         </tr>
     </thead>
     <tbody>
         <% response.forEach(element => { %>
             <tr>
-                <td><%= element.name %></td>
+                <td><a href="/booking/view/<%= element._id %>"><%= element.name %></a></td>
                 <td><%= element.date %></td>
                 <td><%= element.occupation %></td>
                 <td><%= element.entities.length %></td>
-                <td></td>
+                <td><%= element.totalPrice %></td>
             </tr>
         <% }); %>
     </tbody>

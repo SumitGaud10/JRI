@@ -23,8 +23,13 @@ export const createBooking = async (
   const result = EntityList.map((entity) => ({
     _id: entity._id,
     name: entity.name,
-    price: entity.price?.[data.occupation] ?? 0,
+    price: entity.price[data.occupation] ?? 0,
   }));
+
+  let totalPrice = 0;
+  EntityList.map((entity) => {
+    totalPrice += entity.price[data.occupation];
+  });
 
   await Booking.create({
     name: data.name,
@@ -32,9 +37,24 @@ export const createBooking = async (
     occupation: data.occupation,
     entities: result,
     bookedBy: user.username,
+    totalPrice,
   });
 };
 
 export const getAllBookings = async () => {
   return await Booking.find();
+};
+
+export const getBooking = async (_id: string) => {
+  const booking = await Booking.findOne({ _id });
+  if (!booking) return null;
+  return booking;
+};
+
+export const deleteBookingService = async (_id: string) => {
+  const deletation = await Booking.deleteOne({ _id });
+  if (!deletation.acknowledged) {
+    return false;
+  }
+  return true;
 };

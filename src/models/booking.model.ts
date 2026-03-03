@@ -11,7 +11,11 @@ const bookingSchema = new mongoose.Schema({
   },
   occupation: {
     type: String,
-    enum: ["Railway", "Committe", "Others"],
+    enum: ["Railway", "Committee", "Others"],
+    required: true,
+  },
+  totalPrice: {
+    type: Number,
     required: true,
   },
   bookedBy: {
