@@ -8,3 +8,15 @@ export const userLogin = asyncHandler(
     failureFlash: "Incorrect credentails",
   }),
 );
+
+export const userLogout = asyncHandler(async (req, res) => {
+  req.logOut((err) => {
+    if (err) {
+      return res.render("500");
+    }
+
+    return res.redirect("/login");
+  });
+});
+
+export const loginPage = asyncHandler(async (req, res) => res.render("login"));

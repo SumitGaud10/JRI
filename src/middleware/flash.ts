@@ -5,5 +5,6 @@ export const flashMiddlware: RequestHandler = (req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.warning = req.flash("warning");
   res.locals.location = req.path;
+  res.locals.query = req.query;
   next();
 };

@@ -1,6 +1,7 @@
 import { Booking } from "../models/booking.model.js";
 import { Entity } from "../models/entity.model.js";
 import type { createFormBody, selectBody } from "../zod/booking.zod.js";
+import type QueryString from "qs";
 
 export const getAvailableEntity = async (data: selectBody) => {
   const existingBooking = await Booking.find({ date: data.date });
@@ -41,8 +42,14 @@ export const createBooking = async (
   });
 };
 
-export const getAllBookings = async () => {
-  return await Booking.find();
+export const getAllBookings = async (query: QueryString.ParsedQs) => {
+  const filter: any = {};
+
+  if (query.occupation) filter.occupation = query.occupation;
+  if (query.date) filter.date = query.date;
+  if (query.entity) filter["entities.name"] = query.entity;
+
+  return await Booking.find(filter);
 };
 
 export const getBooking = async (_id: string) => {

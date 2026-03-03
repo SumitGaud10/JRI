@@ -29,7 +29,6 @@ export const book = asyncHandler(async (req, res) => {
   const data = await createFormBody.safeParseAsync(req.body);
 
   if (!data.success) {
-    console.log(data.error);
     req.flash("error", "Invalid Input");
     return res.redirect("/booking/new");
   }
@@ -41,15 +40,15 @@ export const book = asyncHandler(async (req, res) => {
 });
 
 export const view = asyncHandler(async (req, res) => {
-  const response = await getAllBookings();
+  const query = req.query;
+  const response = await getAllBookings(query);
   return res.render("dashboard/view", { response });
 });
 
 export const detailedView = asyncHandler(async (req, res) => {
   const query = req.params.id as string;
   if (!mongoose.Types.ObjectId.isValid(query)) {
-    req.flash("error", "Parameter not valid");
-    return res.redirect("/booking/view");
+    return res.render("404");
   }
   const booking = await getBooking(query);
   if (!booking) {
@@ -63,7 +62,7 @@ export const deleteBooking = asyncHandler(async (req, res) => {
   const query = req.params.id as string;
   if (!mongoose.Types.ObjectId.isValid(query)) {
     req.flash("error", "Parameter not valid");
-    return res.redirect(`/booking/view/${req.query}`);
+    return res.redirect(`/booking/view/${query}`);
   }
 
   const success = await deleteBookingService(query);

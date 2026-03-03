@@ -1,5 +1,6 @@
 import express from "express";
-import router from "./router/router.js";
+import authRouter from "./router/auth.router.js";
+import bookingRouter from "./router/booking.router.js";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import expressLayouts from "express-ejs-layouts";
@@ -47,7 +48,8 @@ app.use(passport.session());
 app.use(flash());
 app.use(flashMiddlware);
 
-app.use(router);
+app.use(authRouter);
+app.use("/booking", bookingRouter);
 app.use(NotFound);
 app.use(errorMiddleware);
 
