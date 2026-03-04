@@ -11,6 +11,7 @@ async function seed() {
   await User.create({
     username: "admin",
     password: hashedPassword,
+    role: "admin",
   });
 
   console.log("Admin user created");

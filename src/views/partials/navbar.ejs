@@ -14,10 +14,18 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <% if(user.role === "admin"){ %>
+          <li class="nav-item">
+          <a
+            class="nav-link <%= location == '/admin' ? 'active':'' %>"
+            href="/admin"
+            >Admin</a
+          >
+        </li>
+        <% } %>
         <li class="nav-item">
           <a
             class="nav-link <%= location == '/booking/new' ? 'active':'' %>"
-            aria-current="page"
             href="/booking/new"
             >Add</a
           >
@@ -44,6 +52,16 @@
               <button class="dropdown-item" id="theme-toggle">
                 Change theme
               </button>
+            </li>
+            <li>
+              <button
+          type="button"
+          class="dropdown-item"
+          data-bs-toggle="modal"
+          data-bs-target="#passwordChange"
+        >
+          Change Password
+        </button>
             </li>
             <li><hr class="dropdown-divider" /></li>
             <li>
@@ -93,3 +111,69 @@
     </div>
   </div>
 </div>
+
+
+
+
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="passwordChange"
+          tabindex="-1"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Change Password
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <form action="/passwd" method="post">
+                <div class="modal-body">
+
+                  <div class="mb-3">
+                    <label for="currentPassword" class="form-label"
+                      >Current Password</label
+                    >
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="currentPassword"
+                      name="currentPassword"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="newPassword" class="form-label"
+                      >New Password</label
+                    >
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="newPassword"
+                      name="newPassword"
+                    />
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button type="submit" class="btn btn-primary">
+                    Save changes
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>

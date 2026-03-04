@@ -1,0 +1,60 @@
+<%- include("../partials/navbar") %> <%- include("../partials/alert") %>
+<section class="container mt-5">
+
+  <div class="card mt-4">
+    <div class="card-header">User Management</div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Creation Date</th>
+            <th>Last Updated On</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% userList.map((element)=>{ %>
+                <tr>
+                    <td><a href="/admin/user/<%= element._id %>"><%= element.username %></a></td>
+                    <td><%= new Date(element.createdAt).toLocaleDateString() %></td>
+                    <td><%= new Date(element.updatedAt).toLocaleDateString() %></td>
+                </tr>
+           <% }) %>
+        </tbody>
+      </table>
+
+    </div>
+    <div class="card-footer">
+      <a href="#" class="card-link">Create User</a>
+    </div>
+  </div>
+
+  <div class="card mt-4">
+    <div class="card-header">Entity Management</div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Railway</th>
+            <th>Committee</th>
+            <th>Others</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% entityList.map((element)=>{ %>
+                <tr>
+                    <td><a href="/admin/entity/<%= element._id %>"><%= element.name %></a></td>
+                    <td><%= element.price.Railway %></td>
+                    <td><%= element.price.Committee %></td>
+                    <td><%= element.price.Others %></td>
+                </tr>
+           <% }) %>
+        </tbody>
+      </table>
+    </div>
+    <div class="card-footer">
+      <a href="">Create Entity</a>
+    </div>
+  </div>
+</section>
