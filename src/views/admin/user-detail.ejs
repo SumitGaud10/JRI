@@ -136,7 +136,10 @@
                 >
                   Close
                 </button>
-                <form method="post" action="/admin/user/<%= information._id %>">
+                <form
+                  method="post"
+                  action="/admin/user/delete/<%= information._id %>"
+                >
                   <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
               </div>

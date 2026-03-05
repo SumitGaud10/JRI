@@ -1,29 +1,34 @@
 import mongoose, { type InferSchemaType } from "mongoose";
 
-const entitySchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  price: {
-    type: {
-      Railway: {
-        type: Number,
-        required: true,
-      },
-      Committee: {
-        type: Number,
-        required: true,
-      },
-      Others: {
-        type: Number,
-        required: true,
-      },
+const entitySchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+      unique: true,
     },
-    required: true,
+    price: {
+      type: {
+        Railway: {
+          type: Number,
+          required: true,
+        },
+        Committee: {
+          type: Number,
+          required: true,
+        },
+        Others: {
+          type: Number,
+          required: true,
+        },
+      },
+      required: true,
+    },
   },
-});
+  {
+    timestamps: true,
+  },
+);
 
 export type IEntity = InferSchemaType<typeof entitySchema>;
 

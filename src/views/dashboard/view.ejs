@@ -6,10 +6,11 @@
   <p class="text-secondary">
     Tap a booking to view details
   </p>
+  <div class="d-flex justify-content-end">
 
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filterModal" >
-    Filter
+    <button type="button" class="btn btn-secondary align-self-left" data-bs-toggle="modal" data-bs-target="#filterModal" >
+    <i class="bi bi-funnel"></i> Filter
     </button>
 
     <!-- Modal -->
@@ -70,6 +71,7 @@
             </div>
         </div>
     </div>
+  </div>
 
 
   <!-- Desktop Table -->
@@ -94,7 +96,11 @@
             </td>
             <td><%= new Date(element.date).toLocaleDateString() %></td>
             <td>
-              <span class="badge bg-primary">
+              <span class="badge bg-<%= 
+  element.occupation === "Railway" ? "primary" :
+  element.occupation === "Committee" ? "success" :
+  element.occupation === "Others" ? "secondary" :
+  "secondary"%>">
                 <%= element.occupation %>
               </span>
             </td>
@@ -124,7 +130,11 @@
                 <%= new Date(element.date).toLocaleDateString() %>
               </small>
             </div>
-            <span class="badge bg-primary">
+            <span class="badge bg-<%= 
+  element.occupation === "Railway" ? "primary" :
+  element.occupation === "Committee" ? "success" :
+  element.occupation === "Others" ? "secondary" :
+  "secondary"%>">
               <%= element.occupation %>
             </span>
           </div>
