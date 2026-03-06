@@ -3,3 +3,4 @@ Add Validation again while booking wheather the entity is available or not
 Seperate admin controller and service
 Refactor or atleast check redirect and render logic 
 User MethodOverride
+Custom zod errors
