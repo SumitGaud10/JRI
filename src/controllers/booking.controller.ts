@@ -33,7 +33,10 @@ export const book = asyncHandler(async (req, res) => {
     return res.redirect("/booking/new");
   }
 
-  await createBooking(data.data, req.user!);
+  if (!(await createBooking(data.data, req.user!))) {
+    req.flash("error", "There was an error");
+    return res.redirect("/booking/new");
+  }
 
   req.flash("success", "Booking created");
   return res.redirect("/booking/new");

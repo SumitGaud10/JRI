@@ -1,18 +1,21 @@
 <% if(error && error.length > 0){ %>
-      <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <%= error[0] %>
+      <div class="alert alert-danger alert-dismissible d-flex gap-2 align-items-center fade show" role="alert">
+        <i class="bi bi-exclamation-triangle-fill"></i>
+        <div><%= error[0] %></div>
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     <% } %>
     <% if(success && success.length > 0){ %>
-      <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <%= success[0] %>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <div class="alert alert-success alert-dismissible d-flex gap-2 align-items-center fade show" role="alert">
+        <i class="bi bi-check-circle-fill"></i> 
+        <div><%= success[0] %></div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     <% } %>
     <% if(warning && warning.length > 0){ %>
-      <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <%= warning[0] %>
+      <div class="alert alert-warning alert-dismissible d-flex gap-2 align-items-center fade show" role="alert">
+        <i class="bi bi-exclamation-triangle-fill"></i>
+        <div><%= warning[0] %></div>
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     <% } %>

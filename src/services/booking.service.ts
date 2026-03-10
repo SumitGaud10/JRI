@@ -21,6 +21,18 @@ export const createBooking = async (
   user: Express.User,
 ) => {
   const EntityList = await Entity.find({ _id: { $in: data.entities } });
+
+  const existingBooking = await Booking.find({ date: data.date });
+
+  const existingBookingEntityId = existingBooking
+    .flatMap((b) => b.entities)
+    .map((e) => e._id.toString())
+    .filter((id) => !!id);
+
+  if (existingBookingEntityId.some((item) => data.entities.includes(item))) {
+    return false;
+  }
+
   const result = EntityList.map((entity) => ({
     _id: entity._id,
     name: entity.name,
@@ -40,6 +52,7 @@ export const createBooking = async (
     bookedBy: user.username,
     totalPrice,
   });
+  return true;
 };
 
 export const getAllBookings = async (query: QueryString.ParsedQs) => {

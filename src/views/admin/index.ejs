@@ -2,7 +2,12 @@
 <section class="container mt-5">
 
   <div class="card mt-4">
-    <div class="card-header">User Management</div>
+    <div class="card-header d-flex justify-content-between">
+      <div>User Management</div>
+      <a data-bs-toggle="modal" data-bs-target="#userCreationModal" style="cursor: pointer;">
+        <i class="bi bi-plus"></i> Add
+      </a>
+    </div>
     <div class="card-body">
       <table class="table">
         <thead>
@@ -24,13 +29,41 @@
       </table>
 
     </div>
-    <div class="card-footer">
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userCreationModal">
-        Create
-      </button>
+  </div>
 
-      <!-- Modal -->
+  <div class="card mt-4">
+    <div class="card-header d-flex justify-content-between">
+      <div>Entity Management</div>
+      <a data-bs-toggle="modal" data-bs-target="#entityCreationModal" style="cursor: pointer;">
+        <i class="bi bi-plus"></i> Add
+      </a>
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Railway</th>
+            <th>Committee</th>
+            <th>Others</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% entityList.map((element)=>{ %>
+                <tr>
+                    <td><a href="/admin/entity/<%= element._id %>"><%= element.name %></a></td>
+                    <td><%= element.price.Railway %></td>
+                    <td><%= element.price.Committee %></td>
+                    <td><%= element.price.Others %></td>
+                </tr>
+           <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Modal -->
       <div class="modal fade" id="userCreationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -57,39 +90,8 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <div class="card mt-4">
-    <div class="card-header">Entity Management</div>
-    <div class="card-body">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Railway</th>
-            <th>Committee</th>
-            <th>Others</th>
-          </tr>
-        </thead>
-        <tbody>
-            <% entityList.map((element)=>{ %>
-                <tr>
-                    <td><a href="/admin/entity/<%= element._id %>"><%= element.name %></a></td>
-                    <td><%= element.price.Railway %></td>
-                    <td><%= element.price.Committee %></td>
-                    <td><%= element.price.Others %></td>
-                </tr>
-           <% }) %>
-        </tbody>
-      </table>
-    </div>
-    <div class="card-footer">
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#entityCreationModal">
-        Create
-      </button>
-
-      <!-- Modal -->
+<!-- Modal -->
       <div class="modal fade" id="entityCreationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -126,6 +128,3 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
